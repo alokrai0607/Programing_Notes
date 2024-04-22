@@ -1,0 +1,168 @@
+* Write SQL query for create database ;
+
+1.create database library ;
+
+* Write SQL query for Use Database .
+
+2. use database library ;
+
+* Write SQL query for show tables;
+
+3. Show tables ;
+
+* Write SQL query to create a table ‘book’
+
+
+4. create table book(
+		Bookid int(5) primary key ,
+		Title varchar(50) not null ,
+		Publisher varchar(50) not null ,
+		isbn_no varchar(10) unique ,
+		Price decimal(5,2) default 0.0 ,
+		Pdate date not null );
+		
+* Write SQL query to display structure of table book		
+		
+5. desc book ;
+
+* Write SQL query to add a new column at the end of table with following details 
+		discount double(4,2) 
+
+6. ALTER TABLE book ADD COLUMN discount double(4,2) ;
+
+* Write SQL query to change data type of isbn_no to char(10) also apply NOT NULL constraint 
+
+7. ALTER TABLE Book MODIFY COLUMN isbn_no char(10) ;
+
+*  Write SQL query to insert following record in the table book 
+
+8.	 INSERT INTO book (bookid, title, publisher, isbn_no, pdate, price, discount)
+		VALUES
+		(1, 'FIT Book', 'Ratna', '13478690', '2018-07-01', 400.00, 5.0),
+		(2, 'Physics text', 'TMH', '28476292', '2017-01-22', 312.75, 7.5),
+		(3, 'Accountancy Paper', 'Pearson', '34868686', '2005-08-03', 324.28, 12.0),
+		(4, 'All in one', 'Genius', '92471462', '2011-01-01', 250.00, null),
+		(5, 'Color book', 'Ashirwad', '36362978', '2015-12-31', 0.00, 0.0),
+		(6, 'First Flight', 'TMH', '32978462', '2018-06-05', 44.0, 0.0);
+
+Q.6 Write SQL query to display all records of table book 
+
+  * select * from book ;
+
+Q.7 Write SQL query to display title, price and discount of all books 
+
+	* select title, price , discount from book ;
+
+Q.8 Write SQL query to display distinct values of column discount from table book
+
+ * select distinct (  discount ) from book ;
+
+Q.9 Write SQL query to display all records of book such that title should be displayed as name and pdate as publishing_date 
+
+  select bookid, title as name, publisher, isbn_no, pdate as publishing_date, price, discount from book ;
+
+Q.10 Write SQL query to display all records of table book whose price is more than 300 
+
+  select * from book where price > 300 ;
+
+Q.11 Write SQL query to display all records of table book whose price is less than 380 
+
+	* select * from book where price < 380 ;
+Q.12 Write SQL query to display all records of table book whose title is color book
+
+	* select * from book where title = "color book";
+ 
+Q.13 Write SQL query to display all records of table book whose isbn_no is not equal to 13478690
+
+  * select * from book where not  isbn_no = "13478690";
+  
+  
+Q.14 Write SQL query to display all records of books whose discount is more than or equal to 5.0
+
+  * select * from book where discount >= 5.0 ;
+
+  
+Q.15 Write SQL query to display all records of books whose discount is less than or equal to 10.0 
+
+	* select * from book where discount <= 10.0 ;
+	
+	
+Q.16 Write SQL query to display title, publisher and price of all books whose price is null
+
+   * select title , publisher , price from book where price = "NULL" ;
+
+ 
+Q.17 Write SQL query to display bookid, isbn_no, pdate of all books whose price is not null 
+
+     * select  bookid, isbn_no, pdate from book where price != "NULL";
+	 
+Q.18 Write SQL query to display bookid, title, price for all books whose pdate is from 31-Dec-2015 to 01-Jul-2018 
+
+
+   * select  bookid, title, price from book where pdate between "2015-12-31" AND "2018-07-01" ;
+ 
+Q.19 Write SQL query to display all books whose price is not in the range of 250 to 324.28 
+
+    select * from book where price Not between 250 and 324.28 ;
+	
+Q.20 Write SQL query to display all books whose publisher has letter ‘i’anywhere
+
+    select * from book where  publisher LIKE "%i%" ;
+	
+Q.21 Write SQL query to display all books whose publisher has last letter ‘k’
+
+	select * from book where  publisher LIKE "_i%" ;
+	
+	
+Q.22 Write SQL query to display all books whose publisher has second last letter ‘o’
+	
+	SELECT * FROM book WHERE SUBSTRING(publisher, LENGTH(publisher) - 1, 1) = 'o';
+
+Q.23 Write SQL query to display title, “final price” (payable price after discount) for all books whose discount is not null 
+
+ * SELECT Title, Price * (1 - (discount / 100)) AS final_price FROM book WHERE discount IS NOT NULL;
+
+Q.24 Write SQL query to display all books whose price is more than 250 and discount is not null 
+
+ * Select * from book WHERE (price > 250) and (discount is Not Null);
+
+Q.25 Write SQL query to display publisher, pdate of all books whose title starts with letter ‘a’ or pdate is before 01-Jan-2017 
+
+    *  Select publisher , pdate from book WHERE title like 'a%' OR pdate < '2017-01-01' ;
+	
+
+
+Q.26 Write SQL query to display title, publisher, pdate of all books whose pdate is 01-Jul-2018 or 22-Jan-2017 or 31-Dec-2015 
+
+   * select title, publisher, pdate from book WHERE pdate = "2018-07-01" OR "2017-01-22" OR "2015-12-31" ;
+   
+Q.27 Write SQL query to display bookid, title, isbn_no, pdate of all books whose pdate is neither 05-Jun-2018 not 22-Jan-2017 
+
+   * SELECT bookid, title, isbn_no, pdate FROM book WHERE pdate NOT IN ('2018-06-05', '2017-01-22');
+
+Q.28 Write SQL query to display details of all books in the ascending order of their title
+
+    * select * from book ORDER BY title ;
+ 
+Q.29 Write SQL query to display details of all books in the descending order of their price 
+
+   * select * from book ORDER BY price dsc ;
+   
+Q.30 Write SQL query to increase price of every book by 10% whose price is less than 300 
+
+   * 
+Q.31 Write SQL query to delete all records from table book whose price is 0 to 300 
+
+   * delete * from book WHERE price between "0" AND "300" ;
+   
+Q.32 Write SQL query to drop column isbn_no from table book 
+
+   * ALTER TABLE Book drop column isbn_no ; 
+   
+Q.33 Write SQL query to drop table book
+
+   * drop table book ;
+   
+Q. 34  Write SQL uqery from clear terminal .
+
+   * \! cls ;   
